@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Luxe Pair</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f6f3fb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #3e2b63 0%, #5a3e94 100%);
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu-icon {
+      font-size: 26px;
+      cursor: pointer;
+      margin-right: 15px;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ffd700, #ffeb3b, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: rainbowGlow 3s ease-in-out infinite, bounceIn 1s ease-out forwards;
+      opacity: 0;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    @keyframes rainbowGlow {
+      0%, 100% {
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg) brightness(1.2);
+      }
+      25% {
+        background-position: 50% 0%;
+        filter: hue-rotate(90deg) brightness(1.4);
+      }
+      50% {
+        background-position: 100% 50%;
+        filter: hue-rotate(180deg) brightness(1.6);
+      }
+      75% {
+        background-position: 50% 100%;
+        filter: hue-rotate(270deg) brightness(1.4);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: translate(-50%, -30px) scale(0.3);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-50%, 5px) scale(1.05);
+        opacity: 0.8;
+      }
+      70% {
+        transform: translate(-50%, -3px) scale(0.95);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate(-50%, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .side-menu {
+      position: absolute;
+      top: 70px;
+      left: 20px;
+      width: 220px;
+      background: linear-gradient(135deg, #5a3e94 0%, #6f52b8 100%);
+      color: #fff;
+      display: none;
+      flex-direction: column;
+      padding: 10px 0;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      z-index: 100;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .side-menu a {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .side-menu a:hover {
+      background-color: rgba(255,255,255,0.1);
+      border-left-color: #ffd700;
+      padding-left: 25px;
+    }
+
+    .welcome,
+    .about,
+    .contact-container,
+    .explore,
+    .privacy-policy,
+    .terms-conditions {
+      background: #fff;
+      margin: 30px auto;
+      padding: 30px;
+      max-width: 800px;
+      border-left: 6px solid #5a3e94;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      font-size: 18px;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #3e2b63 0%, #5a3e94 100%);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #5a3e94 0%, #6f52b8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .welcome span {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 16px;
+      font-style: italic;
+      color: #666;
+    }
+
+    .about,
+    .contact-container,
+    .privacy-policy,
+    .terms-conditions {
+      display: none;
+    }
+
+    .about h2,
+    .contact-container h2,
+    .explore h2,
+    .privacy-policy h2,
+    .terms-conditions h2 {
+      color: #3e2b63;
+      margin-bottom: 20px;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .about ul,
+    .privacy-policy ul,
+    .terms-conditions ul {
+      margin-top: 15px;
+      padding-left: 25px;
+    }
+
+    .about li,
+    .privacy-policy li,
+    .terms-conditions li {
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .about li::before {
+      content: "✨";
+      position: absolute;
+      left: -20px;
+    }
+
+    .privacy-policy li::before,
+    .terms-conditions li::before {
+      content: "•";
+      position: absolute;
+      left: -20px;
+      color: #5a3e94;
+      font-weight: bold;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: #e9ecef;
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 15px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #3e2b63, #5a3e94);
+      border-radius: 50%;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .contact-item a {
+      color: #3e2b63;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+      color: #5a3e94;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      margin-top: 2rem;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #3e2b63 0%, #5a3e94 100%);
+      color: #fff;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #3e2b63;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .product-gallery-heading {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #4B0082;
+      text-align: center;
+      animation: fadeInSlide 1s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInSlide {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .masonry-gallery {
+      column-count: 2;
+      column-gap: 16px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    .masonry-gallery img {
+      width: 90%;
+      max-height: 300px;
+      margin: 0 auto 16px;
+      border-radius: 10px;
+      display: block;
+      break-inside: avoid;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .brand {
+        font-size: 26px;
+      }
+
+      .side-menu {
+        width: 90%;
+        left: 5%;
+      }
+
+      .welcome,
+      .about,
+      .contact-container,
+      .explore,
+      .privacy-policy,
+      .terms-conditions {
+        margin: 15px;
+        font-size: 16px;
+        padding: 20px;
+      }
+
+      .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .contact-icon {
+        margin-right: 0;
+      }
+
+      .masonry-gallery {
+        column-count: 1;
+      }
+
+      .masonry-gallery img {
+        width: 100%;
+        max-height: 250px;
+      }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    .menu-icon:focus,
+    .btn:focus,
+    .side-menu a:focus,
+    .contact-item a:focus {
+      outline: 2px solid #ffd700;
+      outline-offset: 2px;
+    }
+
+    .page-transition {
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+<header>
+  <div class="menu-icon" onclick="toggleMenu()" tabindex="0" role="button" aria-label="Toggle navigation menu">
+    &#9776;
+  </div>
+  <div class="brand">The Luxe Pair</div>
+</header>
+
+<nav class="side-menu" id="sideMenu" role="navigation" aria-label="Main navigation">
+  <a href="#" onclick="showWelcome()" role="menuitem">🏠 Home</a>
+  <a href="clothing.html">👗 Clothing</a>
+  <a href="footwear.html">👟 Footwear</a>
+  <a href="accessories.html">💎 Accessories & Beauty</a>
+  <a href="bags.html">👜 Bags & Storage</a>
+  <a href="parcel.html">🎁 Parcels & Gifts</a>
+  <a href="wedding.html">💍 Wedding Collection</a>
+  <a href="homeessential.html">🏡 Home Essentials</a>
+  <a href="#" onclick="showContact()" role="menuitem">📞 Contact</a>
+  <a href="#" onclick="showAbout()" role="menuitem">ℹ️ About Us</a>
+  <a href="#" onclick="showPrivacy()" role="menuitem">🔒 Privacy Policy</a>
+  <a href="#" onclick="showTerms()" role="menuitem">📜 Terms & Conditions</a>
+</nav>
+
+<!-- Welcome Message -->
+<section class="welcome" id="welcomeSection" role="main">
+  <strong>Welcome to The Luxe Pair</strong> – your go-to spot for trendy cosmetics, stylish shoes & bags, the perfect birthday gifts, and reliable parcel delivery. ✨  
+  
+  <div style="text-align: center;">
+  <br><span>Expect nothing but quality, affordability, and convenience 💅🛍️🎁</span> 
+  </div>
+</section>
+
+<section class="masonry-gallery" id="gallerySection">
+  <h2 class="product-gallery-heading">🛍️ <strong>Product Gallery</strong></h2>
+  <img src="images/shoes1.jpg" onclick="openImage(this.src)">
+  <img src="images/robe2.jpg" onclick="openImage(this.src)">
+  <img src="image/crown2.jpg" onclick="openImage(this.src)">
+  <img src="images/pillow1.jpg" onclick="openImage(this.src)">
+  <img src="images/sneakers1.jpg" onclick="openImage(this.src)">
+  <img src="image/bedsheet1.jpg" onclick="openImage(this.src)">
+<img src="images/vest2.jpg" onclick="openImage(this.src)">
+<img src="image/mas1.jpg" onclick="openImage(this.src)">
+<img src="image/duvet1.jpg" onclick="openImage(this.src)">
+<img src="images/slippers1.jpg" onclick="openImage(this.src)">
+<img src="image/bouquets2.jpg" onclick="openImage(this.src)">
+<img src="images/nightwear3.jpg" onclick="openImage(this.src)">
+<img src="image/friend1.jpg" onclick="openImage(this.src)">
+<img src="images/necklace1.jpg" onclick="openImage(this.src)">
+<img src="image/bodysplash2.jpg" onclick="openImage(this.src)">
+<img src="images/sneakers2.jpg" onclick="openImage(this.src)">
+<img src="images/perfume2.jpg" onclick="openImage(this.src)">
+<img src="image/corsage2.jpg" onclick="openImage(this.src)">
+<img src="image/duvet2.jpg" onclick="openImage(this.src)">
+<img src="image/mas2.jpg" onclick="openImage(this.src)">
+<img src="images/pants2.jpg" onclick="openImage(this.src)">
+<img src="images/slippers2.jpg" onclick="openImage(this.src)">
+<img src="images/underwear2.jpg" onclick="openImage(this.src)">
+<img src="images/pillow2.jpg" onclick="openImage(this.src)">
+<img src="images/watch2.jpg" onclick="openImage(this.src)">
+<img src="image/curtains2.jpg" onclick="openImage(this.src)">
+<img src="image/bouquets1.jpg" onclick="openImage(this.src)">
+<img src="image/crown1.jpg" onclick="openImage(this.src)">
+<img src="image/duvet3.jpg" onclick="openImage(this.src)">
+<img src="images/propose2.jpg" onclick="openImage(this.src)">
+<img src="image/corsage1.jpg" onclick="openImage(this.src)">
+<img src="images/ring1.jpg" onclick="openImage(this.src)"> 
+<img src="image/boxer1.jpg" onclick="openImage(this.src)">
+<img src="image/curtains1.jpg" onclick="openImage(this.src)">
+<img src="images/table1.jpg" onclick="openImage(this.src)">
+<img src="images/shoes4.jpg" onclick="openImage(this.src)">
+<img src="images/necklace2.jpg" onclick="openImage(this.src)">
+<img src="images/watch1.jpg" onclick="openImage(this.src)">
+<img src="images/underwear3.jpg" onclick="openImage(this.src)">
+<img src="images/robe1.jpg" onclick="openImage(this.src)"> 
+<img src="images/vest3.jpg" onclick="openImage(this.src)">
+<img src="images/vals1.jpg" onclick="openImage(this.src)">
+<img src="images/nightwear2.jpg" onclick="openImage(this.src)">
+<img src="images/sandals4.jpg" onclick="openImage(this.src)">
+<img src="images/nightwear1.jpg" onclick="openImage(this.src)">
+<img src="image/bouquets3.jpg" onclick="openImage(this.src)">
+<img src="images/perfume3.jpg" onclick="openImage(this.src)">
+<img src="image/boxer2.jpg" onclick="openImage(this.src)">
+<img src="images/vest1.jpg" onclick="openImage(this.src)">
+<img src="images/table2.jpg" onclick="openImage(this.src)">
+<img src="image/bedsheet2.jpg" onclick="openImage(this.src)">
+<img src="image/anny1.jpg" onclick="openImage(this.src)">
+<img src="images/pants1.jpg" onclick="openImage(this.src)">
+<img src="image/mum2.jpg" onclick="openImage(this.src) ">
+<img src="image/bridde1.jpg" onclick="openImage(this.src)">
+<img src="image/bride2.jpg" onclick="openImage(this.src)">
+<img src="images/sandals5.jpg" onclick="openImage(this.src)">
+<img src="image/carpet1.jpg" onclick="openImage(this.src)">
+<img src="image/carpet2.jpg" onclick="openImage(this.src)">
+<img src="image/bday1.jpg" onclick="openImage(this.src)">
+<img src="image/bday2.jpg" onclick="openImage(this.src)"> 
+<img src="image/bodysplash1.jpg" onclick="openImage(this.src)">
+  
+  <!-- Lightbox popup container -->
+  <div id="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000;" onclick="closePopup()">
+    <img id="popupImage" src="" style="max-width:90%; max-height:90%; border:4px solid white; border-radius:10px;">
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-container" id="contactSection" role="main">
+  <h2>Contact Us</h2>
+
+  <div class="contact-item">
+    <div class="contact-icon">📱</div>
+    <a href="https://wa.me/233256969352" target="_blank" rel="noopener">WhatsApp: 0256969352</a>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-icon">📱</div>
+    <a href="https://wa.me/233556969638" target="_blank" rel="noopener">WhatsApp: 0556969638</a>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-icon">👻</div>
+    <a href="https://www.snapchat.com/add/nuella_b05" target="_blank" rel="noopener">Snapchat: nuella_b05</a>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-icon">👻</div>
+    <a href="https://www.snapchat.com/add/a_ampofoa21" target="_blank" rel="noopener">Snapchat: a_ampofoa21</a>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-icon">📞</div>
+    <a href="tel:+233256969352">Call: 0256969352</a>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-icon">📞</div>
+    <a href="tel:+233556969638">Call: 0556969638</a>
+  </div>
+
+  <a href="#" onclick="showWelcome()" class="back-button">
+    ← Back to Home
+  </a>
+</section>
+
+<!-- Privacy Policy Section -->
+<section class="privacy-policy" id="privacySection" role="main">
+  <h2>🔒 Privacy Policy</h2>
+  <p>
+    At <strong>The Luxe Pair</strong>, we value your privacy and are committed to protecting your personal information.
+  </p>
+  <ul>
+    <li><strong>📦 Information Collection:</strong> We only collect the necessary details (like name, email, product ordered) to process your request or purchase.</li>
+    <li><strong>🛡️ Data Protection:</strong> Your personal information is stored securely and will not be shared with third parties without your consent.</li>
+    <li><strong>💌 Communication:</strong> We may send you updates about your orders or promotional offers. You can opt out anytime.</li>
+    <li><strong>🍪 Cookies:</strong> Our site may use cookies to improve user experience, but we do not use them to track personal information.</li>
+    <li><strong>📝 Changes:</strong> We may update this privacy policy from time to time. Any changes will be reflected here.</li>
+  </ul>
+  <p>
+    If you have any questions regarding your data or how it's used, please <a href="#" onclick="showContact()">contact us</a>. Your trust means everything to us 💖
+  </p>
+
+  <a href="#" onclick="showWelcome()" class="back-button">
+    ← Back to Home
+  </a>
+</section>
+
+<!-- Terms & Conditions Section -->
+<section class="terms-conditions" id="termsSection" role="main">
+  <h2>📜 Terms & Conditions</h2>
+  <p>
+    By accessing and using <strong>The Luxe Pair</strong> website, you agree to be bound by the following terms and conditions:
+  </p>
+  <ul>
+    <li><strong>Use of Content:</strong> All content on this website is for personal, non-commercial use only unless otherwise stated.</li>
+    <li><strong>Order Accuracy:</strong> We are not responsible for incorrect details submitted by customers. Please review your order before confirming.</li>
+    <li><strong>Product Availability:</strong> All items are subject to availability. We reserve the right to modify or discontinue products without notice.</li>
+    <li><strong>Pricing:</strong> Prices are subject to change without prior notice. Final prices will be shown at checkout.</li>
+    <li><strong>Refunds & Returns:</strong> All sales are final unless the item delivered is significantly different from what was ordered. Please contact us within 24 hours for concerns.</li>
+    <li><strong>Accountability:</strong> The Luxe Pair is not liable for any damages resulting from the use or inability to use our site or products.</li>
+    <li><strong>Policy Changes:</strong> We may revise these terms at any time. Continued use of the site constitutes your acceptance of any updates.</li>
+  </ul>
+  <p>
+    If you have any questions about these terms, feel free to <a href="#" onclick="showContact()">contact us</a>. Thank you for shopping with The Luxe Pair 💎
+  </p>
+
+  <a href="#" onclick="showWelcome()" class="back-button">
+    ← Back to Home
+  </a>
+</section>
+
+<!-- About Section -->
+<section class="about" id="aboutSection" role="main">
+  <h2>About Us</h2>
+  <p>Welcome to <strong>The Luxe Pair</strong> where style meets convenience and every purchase tells a story.</p>
+
+  <p>We're not just another fashion brand; we're a lifestyle destination. At The Luxe Pair, we curate a diverse selection of <strong>trendy cosmetics</strong>, <strong>fashion-forward clothing</strong>, <strong>stylish footwear & bags</strong>, and <strong>elegant accessories</strong> that speak to your unique personality and taste.</p>
+
+  <p>Whether you're dressing for a casual day out, a big event, or just expressing your vibe our collections are crafted with versatility, comfort, and flair in mind.</p>
+
+  <p><strong>What we stand for:</strong></p>
+  <ul>
+    <li>🛍️ Handpicked, premium-quality products</li>
+    <li>💸 Affordable prices without compromising elegance</li>
+    <li>🚚 Fast, secure nationwide delivery</li>
+    <li>🤝 Friendly, customer-first service with real-time support</li>
+    <li>🎨 Personalized styling tips for confident looks</li>
+    <li>✅ Reliable quality guarantee across all items</li>
+  </ul>
+
+  <p><strong>Our story</strong>: The Luxe Pair was born from a passion for bringing together style and accessibility. We believe everyone deserves to feel confident in what they wear and our team works tirelessly to ensure you're always one step ahead in fashion.</p>
+
+  <p>From bold statements to minimalist elegance, we're here to help you curate your wardrobe with intention and individuality.</p>
+
+  <p>Join The Luxe Pair community - where fashion is effortless, affordability meets excellence, and your next favorite outfit is just a click away. 💫</p>
+  
+  <a href="#" onclick="showWelcome()" class="back-button">
+    ← Back to Home
+  </a>
+</section>
+
+<footer>
+  <p>&copy; 2025 The Luxe Pair. All rights reserved.</p>
+  <p><strong>Designed by Reacher💜</strong></p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('sideMenu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function hideAllSections() {
+    document.getElementById('welcomeSection').style.display = 'none';
+    document.getElementById('aboutSection').style.display = 'none';
+    document.getElementById('contactSection').style.display = 'none';
+    document.getElementById('privacySection').style.display = 'none';
+    document.getElementById('termsSection').style.display = 'none';
+    document.getElementById('gallerySection').style.display = 'none';
+  }
+
+  function showWelcome() {
+    hideAllSections();
+    document.getElementById('welcomeSection').style.display = 'block';
+    document.getElementById('gallerySection').style.display = 'block';
+    document.getElementById('sideMenu').style.display = 'none';
+  }
+
+  function showAbout() {
+    hideAllSections();
+    document.getElementById('aboutSection').style.display = 'block';
+    document.getElementById('sideMenu').style.display = 'none';
+  }
+
+  function showContact() {
+    hideAllSections();
+    document.getElementById('contactSection').style.display = 'block';
+    document.getElementById('sideMenu').style.display = 'none';
+  }
+
+  function showPrivacy() {
+    hideAllSections();
+    document.getElementById('privacySection').style.display = 'block';
+    document.getElementById('sideMenu').style.display = 'none';
+  }
+
+  function showTerms() {
+    hideAllSections();
+    document.getElementById('termsSection').style.display = 'block';
+    document.getElementById('sideMenu').style.display = 'none';
+  }
+
+  function openImage(src) {
+    document.getElementById("popupImage").src = src;
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    const menu = document.getElementById('sideMenu');
+    const menuIcon = document.querySelector('.menu-icon');
+    
+    if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+      menu.style.display = 'none';
+    }
+  });
+
+  // Keyboard navigation support
+  document.querySelector('.menu-icon').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  // Add loading animation for external links
+  document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.addEventListener('click', function() {
+      this.innerHTML += ' <span class="loading"></span>';
+    });
+  });
+
+  // Add page transition effect
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('page-transition');
+    showWelcome(); // Show welcome section by default
+  });
+</script>
+
+</body>
+</html>
