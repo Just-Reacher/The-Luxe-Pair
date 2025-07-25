@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parcel & Gifts - The Luxe Pair</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    .page-title {
+  text-align: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* added for non-webkit browsers */
+  color: transparent; /* remove solid color */
+  display: inline-block; /* ensure text background clipping works */
+  margin: 0 auto 0.5rem;
+}
+
+    .page-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+    .parcel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .parcel-card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .parcel-card:hover {
+      transform: translateY(-5px);
+    }
+    .parcel-card img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+    }
+    .parcel-card h3 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .parcel-card p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    .order-button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .order-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
+      }
+      .parcel-card h3 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">The Luxe Pair</a>
+      <ul class="nav-links">
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-button">← Back to Home</a>
+    
+    <h1 class="page-title">Parcel & Gift Boxes</h1>
+    <p class="page-subtitle">Thoughtful parcels for every special moment</p>
+<div class="parcel-list">
+  <div class="parcel-card">
+    <img src="image/friend2.jpg" onclick="openImage(this.src)"alt="Friendship Box" />
+    <h3>Friendship Box</h3>
+    <p>Let your favorite person know how much they mean to you with this special box.</p>
+    <button class="order-button" onclick="orderItem('Friendship Box')">Order Now</button>
+
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/mas3.jpg" alt="Christmas Box" />
+    <h3>Christmas Box</h3>
+    <p>Spread holiday magic with cheerful treats and cozy surprises.</p>
+    <button class="order-button" onclick="orderItem('Christmas Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="images/propose1.jpg" alt="Proposal Box" />
+    <h3>Proposal Box</h3>
+    <p>A magical way to ask one of the most important questions of your life.</p>
+    <button class="order-button" onclick="orderItem('Proposal Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/bday.jpg" alt="Birthday Box" />
+    <h3>Birthday Box</h3>
+    <p>A colorful mix of surprises to bring joy to someone’s big day.</p>
+    <button class="order-button" onclick="orderItem('Birthday Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/anny.jpg" alt="Anniversary Box" />
+    <h3>Anniversary Box</h3>
+    <p>Celebrate lasting love with classy keepsakes and thoughtful touches.</p>
+    <button class="order-button" onclick="orderItem('Anniversary Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/mas.jpg" alt="Christmas Box" />
+    <h3>Christmas Box</h3>
+    <p>Bundle up the joy of Christmas with handpicked seasonal gifts.</p>
+    <button class="order-button" onclick="orderItem('Christmas Box')">Order Now</button>
+  </div>
+
+
+  <div class="parcel-card">
+    <img src="image/mum.jpg" alt="Mother's Day" />
+    <h3>Mother's Day Box</h3>
+    <p>Give mom the love she deserves with this carefully curated box.</p>
+    <button class="order-button" onclick="orderItem('Mother Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/bday3.jpg" alt="Birthday Box" />
+    <h3>Birthday Box</h3>
+    <p>Surprise someone special with festive treats and joyful vibes.</p>
+    <button class="order-button" onclick="orderItem('Birthday Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="images/vals.jpg" alt="Valentine Box" />
+    <h3>Valentine Box</h3>
+    <p>Deliver romance straight to their door with a lovely gift combo.</p>
+    <button class="order-button" onclick="orderItem('Valentine Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="images/propose.jpg" alt="Proposal Box" />
+    <h3>Proposal Box</h3>
+    <p>Set the mood and pop the question with this elegant box of love.</p>
+    <button class="order-button" onclick="orderItem('Proposal Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/anny2.jpg" alt="Anniversary Box" />
+    <h3>Anniversary Box</h3>
+    <p>A classy gift bundle to say “we made it” in the sweetest way.</p>
+    <button class="order-button" onclick="orderItem('Anniversary')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/friend.jpg" alt="Friendship Box" />
+    <h3>Friendship Box</h3>
+    <p>Because real friends deserve a parcel full of laughter and love.</p>
+    <button class="order-button" onclick="orderItem('Friendship Box')">Order Now</button>
+  </div>
+
+  <div class="parcel-card">
+    <img src="image/mum1.jpg" alt="Mother's Day" />
+    <h3>Mother's Day Box</h3>
+    <p>Remind her she is the best with gifts as warm as her heart.</p>
+    <button class="order-button" onclick="orderItem('Mother Box')">Order Now</button>
+  </div>
+</div>
+
+<script>
+     function orderItem(itemName) {
+    // Store selected item in localStorage (optional)
+    localStorage.setItem('selectedItem', itemName);
+
+    // Redirect to checkout page
+    window.location.href = 'checkoutpage.html';
+  }
+  </script>
+
+</body>
+</html>

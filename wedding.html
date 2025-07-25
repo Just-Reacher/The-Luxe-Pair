@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wedding - The Luxe Pair</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      transform: translateY(-2px);
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    .page-title {
+      text-align: center;
+      color: #333;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+    .wedding-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .wedding-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .wedding-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+    .wedding-card:hover::before {
+      left: 100%;
+    }
+    .wedding-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    }
+    .wedding-image {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .wedding-card:hover .wedding-image {
+      transform: scale(1.05);
+    }
+    .wedding-card h3 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .wedding-card p {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.5rem;
+    }
+    .order-button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    .order-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+      background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    }
+    .order-button:active {
+      transform: translateY(0);
+    }
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .page-title {
+        font-size: 2rem;
+      }
+      .wedding-grid {
+        gap: 1.5rem;
+      }
+      .wedding-image {
+        width: 150px;
+        height: 150px;
+      }
+      main {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">The Luxe Pair</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-button">← Back to Home</a>
+""<h1 class="page-title">Wedding Collection</h1>
+<p class="page-subtitle">Celebrate love with our exquisite wedding essentials</p>
+
+<div class="wedding-grid">
+  <div class="wedding-card">
+    <img src="image/bouquet.jpg" alt="Wedding Bouquet" class="wedding-image" />
+    <h3>Wedding Bouquets</h3>
+    <p>Elegant bouquets crafted with love for your special day.</p>
+    <button class="order-button" onclick="orderItem('Wedding Bouquets')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/bride-bo.jpg" alt="Bridesmaid Bouquets" class="wedding-image" />
+    <h3>Bridesmaid Bouquets</h3>
+    <p>Matching mini bouquets for your beautiful bridal team.</p>
+    <button class="order-button" onclick="orderItem('Bridesmaid Bouquets')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/crown.jpg" alt="Floral Crowns" class="wedding-image" />
+    <h3>Floral Crowns</h3>
+    <p>Delicate flower crowns perfect for a boho or garden wedding.</p>
+    <button class="order-button" onclick="orderItem('Floral Crowns')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/crown3.jpg" alt="Floral Crowns" class="wedding-image" />
+    <h3>Floral Crowns</h3>
+    <p>Whimsical headpieces for the bride and her entourage.</p>
+    <button class="order-button" onclick="orderItem('Floral Crowns')">Order Now</button>
+  </div>    
+
+  <div class="wedding-card">
+    <img src="images/ring.jpg" alt="Engagement Ring Box" class="wedding-image" />
+    <h3>Engagement Ring Boxes</h3>
+    <p>Classy ring boxes to make the big moment extra special.</p>
+    <button class="order-button" onclick="orderItem('Engagement Ring Boxes')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="images/ring2.jpg" alt="Engagement Ring Box" class="wedding-image" />
+    <h3>Engagement Ring Boxes</h3>
+    <p>Luxury boxes for a sparkling yes!</p>
+    <button class="order-button" onclick="orderItem('Engagement Ring Boxes')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="images/robe.jpg" alt="Bridal Robe" class="wedding-image" />
+    <h3>Bridal Robes</h3>
+    <p>Elegant robes for the bride and her squad while getting ready.</p>
+    <button class="order-button" onclick="orderItem('Bridal Robes')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="images/robe3.jpg" alt="Bridal Robe" class="wedding-image" />
+    <h3>Bridal Robes</h3>
+    <p>Soft, satin robes to keep you stylish before the vows.</p>
+    <button class="order-button" onclick="orderItem('Bridal Robes')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="images/robe4.jpg" alt="Bridal Robe" class="wedding-image" />
+    <h3>Bridal Robes</h3>
+    <p>Personalized robes for a memorable bridal prep.</p>
+    <button class="order-button" onclick="orderItem('Bridal Robes')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="images/propose.jpg" alt="Proposal Hamper" class="wedding-image" />
+    <h3>Proposal Hampers</h3>
+    <p>Gift sets with love notes and goodies to pop the big question.</p>
+    <button class="order-button" onclick="orderItem('Proposal Hampers')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/corsage.jpg" alt="Corsages & Boutonnieres" class="wedding-image" />
+    <h3>Corsages & Boutonnieres</h3>
+    <p>Floral pieces for the groom, groomsmen, and family.</p>
+    <button class="order-button" onclick="orderItem('Corsages & Boutonnieres')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/corsage3.jpg" alt="Corsages & Boutonnieres" class="wedding-image" />
+    <h3>Corsages & Boutonnieres</h3>
+    <p>Fresh, coordinated florals to complete your wedding party look.</p>
+    <button class="order-button" onclick="orderItem('Corsages & Boutonnieres')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="images/table.jpg" alt="Table Centerpieces" class="wedding-image" />
+    <h3>Table Centerpieces</h3>
+    <p>Elegant decorations for reception tables and ceremonies.</p>
+    <button class="order-button" onclick="orderItem('Table Centerpieces')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="images/table3.jpg" alt="Table Centerpieces" class="wedding-image" />
+    <h3>Table Centerpieces</h3>
+    <p>Chic and classy florals that match your wedding vibe.</p>
+    <button class="order-button" onclick="orderItem('Table Centerpieces')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/bouquets9.jpg" alt="Wedding Bouquet" class="wedding-image" />
+    <h3>Wedding Bouquets</h3>
+    <p>Fresh blooms arranged to perfection for your walk down the aisle.</p>
+    <button class="order-button" onclick="orderItem('Wedding Bouquets')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/bouquets8.jpg" alt="Wedding Bouquet" class="wedding-image" />
+    <h3>Wedding Bouquets</h3>
+    <p>Timeless floral elegance in every petal.</p>
+    <button class="order-button" onclick="orderItem('Wedding Bouquets')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/bouquets6.jpg" alt="Wedding Bouquet" class="wedding-image" />
+    <h3>Wedding Bouquets</h3>
+    <p>Chic modern arrangements for the stylish bride.</p>
+    <button class="order-button" onclick="orderItem('Wedding Bouquets')">Order Now</button>
+  </div>
+
+  <div class="wedding-card">
+    <img src="image/bouquets5.jpg" alt="Wedding Bouquet" class="wedding-image" />
+    <h3>Wedding Bouquets</h3>
+    <p>Classic roses and dreamy greens for a romantic touch.</p>
+    <button class="order-button" onclick="orderItem('Wedding Bouquets')">Order Now</button>
+  </div>
+</div>
+
+  </main>
+
+  <script>
+     function orderItem(itemName) {
+    // Store selected item in localStorage (optional)
+    localStorage.setItem('selectedItem', itemName);
+
+    // Redirect to checkout page
+    window.location.href = 'checkoutpage.html';
+  }
+  </script>
+</body>
+</html>
