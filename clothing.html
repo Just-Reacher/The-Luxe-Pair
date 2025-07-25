@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing - The Luxe Pair</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #333;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .clothing-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .clothing-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .clothing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .clothing-card:hover::before {
+            left: 100%;
+        }
+
+        .clothing-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .clothing-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .clothing-card:hover .clothing-image {
+            transform: scale(1.05);
+        }
+
+        .clothing-card h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .clothing-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .order-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+
+        .order-button:active {
+            transform: translateY(0);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .clothing-grid {
+                gap: 1.5rem;
+            }
+            
+            .clothing-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            main {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">The Luxe Pair</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-button">
+            ← Back to Home
+        </a>
+        
+        <h1 class="page-title">Clothing Collection</h1>
+        <p class="page-subtitle">Discover our premium clothing essentials for every occasion</p>
+
+      <div class="clothing-grid">
+
+  <div class="clothing-card">
+    <img src="images/underwear.jpg" alt="Underwear" class="clothing-image">
+    <h3>Underwear</h3>
+    <p>Experience everyday ease with ultra-soft fabrics tailored for your skin.</p>
+    <button class="order-button" onclick="orderItem('Underwear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/underwear5.jpg" alt="Underwear" class="clothing-image">
+    <h3>Underwear</h3>
+    <p>Designed for breathability and discreet comfort all day long.</p>
+    <button class="order-button" onclick="orderItem('Underwear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/underwear4.jpg" alt="Underwear" class="clothing-image">
+    <h3>Underwear</h3>
+    <p>Flexible stretch and a smooth feel for your daily comfort routine.</p>
+    <button class="order-button" onclick="orderItem('Underwear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="image/boxers.jpg" alt="Boxers" class="clothing-image">
+    <h3>Boxers</h3>
+    <p>Lightweight and airy, perfect for lounging or wearing all day.</p>
+    <button class="order-button" onclick="orderItem('Boxers')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="image/boxer3.jpg" alt="Boxers" class="clothing-image">
+    <h3>Boxers</h3>
+    <p>Classic cuts that offer freedom of movement and reliable comfort.</p>
+    <button class="order-button" onclick="orderItem('Boxers')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="image/boxer6.jpg" alt="Boxers" class="clothing-image">
+    <h3>Boxers</h3>
+    <p>Engineered for breathability with modern fits and soft cotton blends.</p>
+    <button class="order-button" onclick="orderItem('Boxers')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/vest.jpg" alt="Vest" class="clothing-image">
+    <h3>Vest</h3>
+    <p>Whether layered or worn solo, our vests deliver everyday ease.</p>
+    <button class="order-button" onclick="orderItem('Vest')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/vest4.jpg" alt="Vest" class="clothing-image">
+    <h3>Vest</h3>
+    <p>Simple and practical, with a sleek design and soft texture.</p>
+    <button class="order-button" onclick="orderItem('Vest')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/vest5.jpg" alt="Vest" class="clothing-image">
+    <h3>Vest</h3>
+    <p>Reliable comfort meets lightweight style in every seam.</p>
+    <button class="order-button" onclick="orderItem('Vest')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/vest6.jpg" alt="Vest" class="clothing-image">
+    <h3>Vest</h3>
+    <p>Stay cool and stylish in vests crafted for daily wear.</p>
+    <button class="order-button" onclick="orderItem('Vest')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/vest7.jpg" alt="Vest" class="clothing-image">
+    <h3>Vest</h3>
+    <p>Minimalist design, made for layering or casual simplicity.</p>
+    <button class="order-button" onclick="orderItem('Vest')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/vest8.jpg" alt="Vest" class="clothing-image">
+    <h3>Vest</h3>
+    <p>Effortless comfort and style you’ll reach for every day.</p>
+    <button class="order-button" onclick="orderItem('Vest')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/nightwear.jpg" alt="Night Wear" class="clothing-image">
+    <h3>Night Wear</h3>
+    <p>End your day in soft serenity with our cozy nightwear line.</p>
+    <button class="order-button" onclick="orderItem('Night Wear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/nightwear4.jpg" alt="Night Wear" class="clothing-image">
+    <h3>Night Wear</h3>
+    <p>Snuggle into nightwear that makes your evenings more peaceful.</p>
+    <button class="order-button" onclick="orderItem('Night Wear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/nightwear5.jpg" alt="Night Wear" class="clothing-image">
+    <h3>Night Wear</h3>
+    <p>Comfort and calm for the quiet hours of the night.</p>
+    <button class="order-button" onclick="orderItem('Night Wear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/nightwear6.jpg" alt="Night Wear" class="clothing-image">
+    <h3>Night Wear</h3>
+    <p>Dream in style with premium fabrics and a relaxed fit.</p>
+    <button class="order-button" onclick="orderItem('Night Wear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/nightwear7.jpg" alt="Night Wear" class="clothing-image">
+    <h3>Night Wear</h3>
+    <p>Soothing comfort that wraps you gently into a restful night.</p>
+    <button class="order-button" onclick="orderItem('Night Wear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/nightwear8.jpg" alt="Night Wear" class="clothing-image">
+    <h3>Night Wear</h3>
+    <p>Drift to sleep in fabrics that care for your skin.</p>
+    <button class="order-button" onclick="orderItem('Night Wear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/nightwear9.jpg" alt="Night Wear" class="clothing-image">
+    <h3>Night Wear</h3>
+    <p>Our nightwear brings peace of mind and body at bedtime.</p>
+    <button class="order-button" onclick="orderItem('Night Wear')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/pants.jpg" alt="Pants" class="clothing-image">
+    <h3>Pants</h3>
+    <p>Made to move with you, from casual walks to bold struts.</p>
+    <button class="order-button" onclick="orderItem('Pants')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/pants3.jpg" alt="Pants" class="clothing-image">
+    <h3>Pants</h3>
+    <p>Our pants redefine casual with comfort-first construction.</p>
+    <button class="order-button" onclick="orderItem('Pants')">Order Now</button>
+  </div>
+
+  <div class="clothing-card">
+    <img src="images/pants4.jpg" alt="Pants" class="clothing-image">
+    <h3>Pants</h3>
+    <p>Tailored lines and soft feel for the modern everyday look.</p>
+    <button class="order-button" onclick="orderItem('Pants')">Order Now</button>
+  </div>
+
+</div>
+    
+        </div>
+    </main>
+
+    <script>
+          function orderItem(itemName) {
+    // Store selected item in localStorage (optional)
+    localStorage.setItem('selectedItem', itemName);
+
+    // Redirect to checkout page
+    window.location.href = 'checkoutpage.html';
+  }
+
+        // Add some interactive effects
+        document.querySelectorAll('.clothing-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(255, 255, 255, 0.95)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 255, 255, 0.9)';
+            });
+        });
+    </script>
+</body>
+</html>

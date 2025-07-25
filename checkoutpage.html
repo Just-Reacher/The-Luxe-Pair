@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - The Luxe Pair</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fdfdfd;
+      padding: 20px;
+    }
+    .checkout-container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .checkout-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+    .checkout-container label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    .checkout-container input,
+    .checkout-container textarea,
+    .checkout-container select {
+      width: 100%;
+      padding: 14px 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+    
+    /* Medium-sized dropdown styling */
+    .checkout-container select {
+      height: 50px; /* Medium height */
+      padding: 14px 40px 14px 12px; /* Extra right padding for arrow */
+      appearance: none; /* Removes the default OS-specific arrow styling */
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23666'%20d='M2%205L0%200h4z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 12px; /* Slightly bigger arrow for medium size */
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    
+    .checkout-container select:hover {
+      border-color: #7c3aed;
+    }
+    
+    .checkout-container select:focus {
+      outline: none;
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+    
+    .checkout-container button {
+      background-color: #7c3aed;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .checkout-container button:hover {
+      background-color: #5b21b6;
+    }
+  </style>
+</head>
+<body>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+    <form action="https://formspree.io/f/mwpqoven" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
+
+       <label for="product">Product Name</label>
+    <select id="product" name="Product" required>
+      <option value="">-- Select Product --</option>
+      <option value="Shoes">Shoes</option>
+      <option value="Bracelet">Bracelet</option>
+      <option value="Slippers">Slippers</option>
+      <option value="Sandals">Sandals</option>
+      <option value="Heels">Heels</option>
+      <option value="Sneakers">Sneakers</option>
+      <option value="Bouquet Box">Bouquet Box</option>
+      <option value="Wedding Bouquets">Wedding Bouquets</option>
+      <option value="Bridesmaid Bouquets">Bridesmaid Bouquets</option>
+      <option value="Necklace">Necklace</option>
+      <option value="Watch">Watch</option>
+      <option value="Boxer">Boxer</option>
+      <option value="Boxers">Boxers</option>
+      <option value="Vest">Vest</option>
+      <option value="Pillows">Pillows</option>
+      <option value="Curtains">Curtains</option>
+      <option value="Body Splash">Body Splash</option>
+      <option value="Perfumes">Perfumes</option>
+      <option value="Floral Crowns">Floral Crowns</option>
+      <option value="Ladies Handbag">Ladies Handbag</option>
+      <option value="School bag">School bag</option>
+      <option value="Night Wear">Night Wear</option>
+      <option value="Bridal Robes">Bridal Robes</option>
+      <option value="Table Centerpieces">Table Centerpieces</option>
+      <option value="Underwear">Underwear</option>
+      <option value="Pants">Pants</option>
+      <option value="Room Carpet">Room Carpet</option>
+      <option value="Bedsheets">Bedsheets</option>
+      <option value="Duvet">Duvet</option>
+      <option value="Birthday Box">Birthday Box</option>
+      <option value="Anniversary Box">Anniversary Box</option>
+      <option value="Valentine Box">Valentine Box</option>
+      <option value="Proposal Hampers">Proposal Box</option>
+      <option value="Friendship Box">Friendship Box</option>
+      <option value="Foldable Wardrobe">Foldable Wardrobe</option>
+      <option value="Travel Bag">Travel Bag</option>
+      <option value="Tote Bag">Tote Bag</option>
+      <option value="Backpack">Backpack</option>
+      <option value="Mother's Day Box">Mother's Day Box</option>
+      <option value="Christmas Box">Christmas Box</option>
+      <option value="Engagement Ring Boxes">Engagement Ring Boxes</option>
+      <option value="Corsages & Boutonnieres">Corsages & Boutonnieres</option>
+    </select>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="note">Order Notes (Optional)</label>
+      <textarea id="note" name="note" rows="2"></textarea>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+
+  <script>
+    // Auto-select the product based on URL parameter or localStorage
+    function autoSelectProduct() {
+      const productDropdown = document.getElementById('product');
+      if (!productDropdown) return;
+      
+      // First, check URL parameters (e.g., ?product=bouquet)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlProduct = urlParams.get('product');
+      
+      let productToSelect = null;
+      
+      if (urlProduct) {
+        // Map URL parameters to actual product values
+        const productMapping = {
+          'bouquet': 'Bouquet Box',
+          'bouquets': 'Bouquet Box',
+          'wedding': 'Bouquet Box',
+          'shoes': 'Shoes',
+          'slippers': 'Slippers',
+          'sandals': 'Sandals',
+          'heels': 'Heels',
+          'sneakers': 'Sneakers',
+          'necklace': 'Necklace',
+          'watch': 'Watch',
+          'boxer': 'Boxer',
+          'boxers': 'Boxers',
+          'vest': 'Vest',
+          'pillow': 'Pillow',
+          'curtains': 'Curtains',
+          'bodysplash': 'Bodysplash',
+          'perfume': 'Perfume',
+          'crown': 'Crown',
+          'night wear': 'Night Wear',
+          'robe': 'Robe',
+          'decoration': 'Table Decoration',
+          'underwear': 'Underwear',
+          'pants': 'Pants',
+          'carpet': 'Carpet',
+          'bedsheet': 'Bedsheet',
+          'duvet': 'Duvet',
+          'birthday': 'Birthday Box',
+          'anniversary': 'Anniversary Box',
+          'valentine': 'Valentine Box',
+          'proposal': 'Proposal Box',
+          'friendship': 'Friendship Box',
+          'mothers-day': "Mother's Day Box",
+          'christmas': 'Christmas Box',
+          'ring': 'Ring',
+          'corsage': 'Corsage'
+        };
+        
+        productToSelect = productMapping[urlProduct.toLowerCase()];
+      }
+      
+      // Fallback to localStorage if no URL parameter
+      if (!productToSelect) {
+        try {
+          const selectedProduct = localStorage.getItem('selectedItem');
+          if (selectedProduct) {
+            productToSelect = selectedProduct;
+          }
+        } catch (e) {
+          console.log('localStorage not available');
+        }
+      }
+      
+      // Select the product in the dropdown
+      if (productToSelect) {
+        for (let option of productDropdown.options) {
+          if (option.value.toLowerCase() === productToSelect.toLowerCase()) {
+            option.selected = true;
+            // Add a subtle highlight to show it was auto-selected
+            productDropdown.style.borderColor = '#7c3aed';
+            productDropdown.style.backgroundColor = '#f3f4f6';
+            
+            // Remove the highlight after 2 seconds
+            setTimeout(() => {
+              productDropdown.style.borderColor = '#ccc';
+              productDropdown.style.backgroundColor = '#fff';
+            }, 2000);
+            break;
+          }
+        }
+      }
+    }
+    
+    // Run auto-selection when page loads
+    document.addEventListener('DOMContentLoaded', autoSelectProduct);
+  </script>
+</body>
+</html>

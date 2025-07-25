@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Footwear - The Luxe Pair</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      transform: translateY(-2px);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+
+    .footwear-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .footwear-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .footwear-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    }
+
+    .footwear-image {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .footwear-card:hover .footwear-image {
+      transform: scale(1.05);
+    }
+
+    .footwear-card h3 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .footwear-card p {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .order-button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .order-button:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    }
+
+    .back-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .footwear-image {
+        width: 150px;
+        height: 150px;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">The Luxe Pair</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-button">← Back to Home</a>
+
+    <h1 class="page-title">Footwear Collection</h1>
+    <p class="page-subtitle">Step into something stylish</p>
+
+   <div class="footwear-grid">
+  <div class="footwear-card">
+    <img src="images/sneakers.jpg" alt="Sneakers" class="footwear-image">
+    <h3>Sneakers</h3>
+    <p>Everyday comfort and street-ready style. Our sneakers keep you moving in fashion.</p>
+    <button class="order-button" onclick="orderItem('Sneakers')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/sandals.jpg" alt="Sandals" class="footwear-image">
+    <h3>Sandals</h3>
+    <p>Perfect for sunny days and chilled vibes. Lightweight and breezy.</p>
+    <button class="order-button" onclick="orderItem('Sandals')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/shoes.jpg" alt="Shoes" class="footwear-image">
+    <h3>Shoes</h3>
+    <p>Elegance meets versatility—your go-to for any stylish occasion.</p>
+    <button class="order-button" onclick="orderItem('Shoes')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/slippers.jpg" alt="Slippers" class="footwear-image">
+    <h3>Slippers</h3>
+    <p>Slide into comfort and simplicity—perfect for laid-back moments.</p>
+    <button class="order-button" onclick="orderItem('Slippers')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="image/heels.jpg" alt="Heels" class="footwear-image">
+    <h3>Heels</h3>
+    <p>Elevate your look with bold, beautiful strides in every step.</p>
+    <button class="order-button" onclick="orderItem('Heels')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/sneakers4.jpg" alt="Sneakers" class="footwear-image">
+    <h3>Sneakers</h3>
+    <p>Designed for durability and flair—walk longer, look sharper.</p>
+    <button class="order-button" onclick="orderItem('Sneakers')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/sneakers3.jpg" alt="Sneakers" class="footwear-image">
+    <h3>Sneakers</h3>
+    <p>Casual enough for daily wear, cool enough for every fit.</p>
+    <button class="order-button" onclick="orderItem('Sneakers')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/sneakers3.jpg" alt="Sneakers" class="footwear-image">
+    <h3>Sneakers</h3>
+    <p>Stay active in style—crafted for comfort and movement.</p>
+    <button class="order-button" onclick="orderItem('Sneakers')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/shoes2.jpg" alt="Shoes" class="footwear-image">
+    <h3>Shoes</h3>
+    <p>From business meetings to dinner dates—shoes that do both.</p>
+    <button class="order-button" onclick="orderItem('Shoes')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/shoes3.jpg" alt="Shoes" class="footwear-image">
+    <h3>Shoes</h3>
+    <p>Step up with confidence—sleek designs for modern moments.</p>
+    <button class="order-button" onclick="orderItem('Shoes')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/sandals3.jpg" alt="Sandals" class="footwear-image">
+    <h3>Sandals</h3>
+    <p>Laid-back elegance—let your feet breathe in minimalist style.</p>
+    <button class="order-button" onclick="orderItem('Sandals')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/sandals2.jpg" alt="Sandals" class="footwear-image">
+    <h3>Sandals</h3>
+    <p>Open-toe freedom and classic vibes—ideal for beach strolls.</p>
+    <button class="order-button" onclick="orderItem('Sandals')">Order Now</button>
+  </div>
+
+  <div class="footwear-card">
+    <img src="images/sandals1.jpg" alt="Sandals" class="footwear-image">
+    <h3>Sandals</h3>
+    <p>Soft soles and timeless straps—a warm-weather favorite.</p>
+    <button class="order-button" onclick="orderItem('Sandals')">Order Now</button>
+  </div>
+</div>
+     </div>
+         </div>
+        </main>
+
+  <script>
+      function orderItem(itemName) {
+    // Store selected item in localStorage (optional)
+    localStorage.setItem('selectedItem', itemName);
+
+    // Redirect to checkout page
+    window.location.href = 'checkoutpage.html';
+  }
+  </script>
+</body>
+</html>
