@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,16 +52,16 @@
       padding: 3rem 2rem;
     }
     .page-title {
-  text-align: center;
-  font-size: 3rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text; /* added for non-webkit browsers */
-  color: transparent; /* remove solid color */
-  display: inline-block; /* ensure text background clipping works */
-  margin: 0 auto 0.5rem;
-}
+      text-align: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      margin: 0 auto 0.5rem;
+    }
 
     .page-subtitle {
       text-align: center;
@@ -87,12 +88,17 @@
       transform: translateY(-5px);
     }
     .parcel-card img {
-      width: 100%;
-      max-width: 350px;
-      height: auto;
-      border-radius: 15px;
-      margin-bottom: 1rem;
-    }
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.parcel-card img:hover {
+  transform: scale(1.1);
+}
     .parcel-card h3 {
       font-size: 1.5rem;
       color: #333;
@@ -113,6 +119,7 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
     .order-button:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
@@ -140,6 +147,9 @@
       }
       .parcel-card h3 {
         font-size: 1.2rem;
+      }
+      .parcel-list {
+        flex-direction: column;
       }
     }
   </style>
